@@ -1,0 +1,29 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixin.scss';
+
+.navLink {
+	@include flex-container(row, 1);
+	align-items: center;
+	text-decoration: none;
+
+	color: rgba(66, 66, 66, 1);
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 0 20px 20px 0;
+
+	font-weight: 600;
+	padding: 1.5em;
+	margin-bottom: 6px;
+
+	&.active {
+		color: $font-color;
+		font-weight: 700;
+		background-color: $main-color;
+
+		border: 1px solid $borders-color;
+		box-shadow: 0 6px 0 0 $borders-color;
+	}
+
+	&:hover:not(.active) {
+		background-color: $background-color;
+	}
+}
