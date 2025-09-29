@@ -1,0 +1,13 @@
+@import '../../../styles/mixin.scss';
+@import '../../../styles/variables.scss';
+
+.btn {
+	width: 100%;
+	border: none;
+	border-radius: 8px;
+	background-color: $main-color;
+	text-align: center;
+	padding: 1em;
+	font-weight: 600;
+	font-size: 16px;
+}

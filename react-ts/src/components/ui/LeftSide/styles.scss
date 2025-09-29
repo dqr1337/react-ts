@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixin.scss';
+
+.leftSide {
+	@include flex-container(column, 3);
+	height: 100vh;
+	padding: 3em;
+	width: 30em;
+	border-right: 2px solid $borders-color;
+	padding-left: 0;
+	background-color: rgba(88, 88, 88, 0.1);
+
+	.navBar {
+		@include flex-container(column, 1);
+	}
+}

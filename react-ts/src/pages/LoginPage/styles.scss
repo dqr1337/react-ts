@@ -1,0 +1,23 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables.scss';
+
+.loginWrapper {
+	@include flex-container(column, 1);
+	@include content-container();
+
+	.link-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: space-around;
+
+		.link {
+			text-decoration: none;
+			color: $main-color;
+			font-weight: 600;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}

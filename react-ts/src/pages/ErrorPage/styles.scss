@@ -1,0 +1,29 @@
+@import '../../styles/mixin.scss';
+
+.errorPage {
+	@include flex-container(column, 1);
+	@include content-container();
+
+	.wrapper {
+		@include flex-container(column, 1);
+		align-items: center;
+
+		.errorWrapper {
+			@include flex-container(row, 0.5);
+
+			background-color: rgb(254, 242, 242);
+			color: rgb(153, 27, 27);
+
+			align-items: center;
+			justify-content: center;
+
+			padding: 0.5em 1em;
+			max-width: 10em;
+			border-radius: 10px;
+		}
+	}
+
+	.goBackBtn {
+		text-decoration: none;
+	}
+}
