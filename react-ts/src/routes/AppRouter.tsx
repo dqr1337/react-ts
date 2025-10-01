@@ -1,11 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Layout } from '../layouts/Layout';
-import { HomePage } from '../pages/HomePage/HomePage';
-import { TaskPage } from '../pages/TaskPage/TaskPage';
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const TaskPage = lazy(() => import('../pages/TaskPage/TaskPage'));
+
 import { LoginPage } from '../pages/LoginPage/LoginPage';
-import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
 import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
+import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
+
+import { RequireAuth } from './RequireAuth';
 
 const router = createBrowserRouter([
 	{
@@ -14,11 +18,24 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <HomePage />,
+				element: (
+					<Suspense fallback="Loading...">
+						<HomePage />
+					</Suspense>
+				),
 			},
 			{
-				path: 'tasks',
-				element: <TaskPage />,
+				element: <RequireAuth />,
+				children: [
+					{
+						path: 'tasks',
+						element: (
+							<Suspense fallback="Loading...">
+								<TaskPage />
+							</Suspense>
+						),
+					},
+				],
 			},
 		],
 	},

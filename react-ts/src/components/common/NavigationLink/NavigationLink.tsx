@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { NavLink, type NavLinkProps } from 'react-router-dom';
 import './styles.scss';
 
 type NavigationLinkType = NavLinkProps & {
-	icon: React.ReactNode;
+	icon: ReactNode;
 	children: string;
 };
 

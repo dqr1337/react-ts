@@ -2,7 +2,7 @@
 @import '../../../styles/mixin.scss';
 
 .navLink {
-	@include flex-container(row, 1);
+	@include flex-container(row, 2);
 	align-items: center;
 	text-decoration: none;
 
