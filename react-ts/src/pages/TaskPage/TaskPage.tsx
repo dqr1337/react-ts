@@ -1,3 +1,5 @@
-export const TaskPage = () => {
+const TaskPage = () => {
 	return <>Tasks</>;
 };
+
+export default TaskPage;
