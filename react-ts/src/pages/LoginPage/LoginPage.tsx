@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, redirect, replace, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 import eye from '../../assets/icons/eye.svg';
@@ -16,7 +16,6 @@ export const LoginPage = () => {
 	const [password, setPassword] = useState('');
 
 	const users = useSelector((state: any) => state.users.users);
-	const isLoggedIn = useSelector((state: any) => state.auth.isAuthenticated);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -29,7 +28,7 @@ export const LoginPage = () => {
 
 		const currentUser = { username: username, password: password };
 
-		if (authVerify(users, isLoggedIn, currentUser)) {
+		if (authVerify(users, currentUser)) {
 			dispatch(login(currentUser));
 			navigate('/', { replace: true });
 		} else {

@@ -1,18 +1,39 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.scss';
 
 import eye from '../../assets/icons/eye.svg';
 import eyeClosed from '../../assets/icons/eyeClosed.svg';
 import * as CC from '../../components/common/index';
+import { authVerify } from '../../features/authVerify';
+import { addUser } from '../../store/slices/usersSlice';
+import { login } from '../../store/slices/authSlice';
 
 export const RegisterPage = () => {
 	const [isVisibile, setIsVisibile] = useState(false);
+	const [isAccountExist, setIsAccountExist] = useState(false);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
-	function SubmitForm(e) {
+	const users = useSelector((state: any) => state.users.users);
+
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	function SubmitForm(e: React.FormEvent) {
 		e.preventDefault();
+
+		const currentUser = { username: username, password: password };
+
+		if (authVerify(users, currentUser)) {
+			setIsAccountExist(true);
+			return;
+		}
+
+		dispatch(addUser(currentUser));
+		dispatch(login(currentUser));
+		navigate('/', { replace: true });
 	}
 
 	const eyeImg = <img src={eye} alt="eye" />;
@@ -62,6 +83,8 @@ export const RegisterPage = () => {
 						</button>
 					</CC.Input>
 				</CC.Form>
+
+				{isAccountExist ? <span className="highlighted">Try to login to your account.</span> : ''}
 
 				<p className="link-wrapper">
 					Already have an account?

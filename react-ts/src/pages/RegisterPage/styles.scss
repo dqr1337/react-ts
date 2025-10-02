@@ -2,8 +2,13 @@
 @import '../../styles/variables.scss';
 
 .registerWrapper {
-	@include flex-container(column, 1);
+	@include flex-container(column, 0.5);
 	@include content-container();
+
+	.highlighted {
+		color: red;
+		font-weight: bold;
+	}
 
 	.link-wrapper {
 		width: 100%;
@@ -11,7 +16,6 @@
 		justify-content: space-around;
 
 		.link {
-			text-decoration: none;
 			color: $main-color;
 			font-weight: 600;
 

@@ -18,33 +18,33 @@ export const LeftSide = () => {
 	return (
 		<div className="leftSide">
 			<h1 className="title">My Tasks</h1>
-			<div className="wrapper">
-				<nav className="navBar">
-					<CC.NavigationLink to="/" icon={<img src={homeIcon} alt="tasks" />}>
-						Home
-					</CC.NavigationLink>
-					<CC.NavigationLink to="/tasks" icon={<img src={taskIcon} alt="tasks" />}>
-						Tasks
-					</CC.NavigationLink>
-				</nav>
-				{isLoggedIn ? (
-					<div className="profileWrapper">
-						<div className="usernameWrapper">
-							<img src={profileIcon} alt="profile" />
-							{loggedUser}
-						</div>
-						<CC.Button type="button" onClick={() => dispatch(logout())}>
-							Logout
-						</CC.Button>
+
+			<nav className="navBar">
+				<CC.NavigationLink to="/" icon={<img src={homeIcon} alt="tasks" />}>
+					Home
+				</CC.NavigationLink>
+				<CC.NavigationLink to="/tasks" icon={<img src={taskIcon} alt="tasks" />}>
+					Tasks
+				</CC.NavigationLink>
+			</nav>
+
+			{isLoggedIn ? (
+				<div className="profileWrapper">
+					<div className="usernameWrapper">
+						<img src={profileIcon} alt="profile" />
+						{loggedUser}
 					</div>
-				) : (
-					<div className="profileWrapper">
-						<CC.Button type="button" onClick={() => navigate('/login')}>
-							Login
-						</CC.Button>
-					</div>
-				)}
-			</div>
+					<CC.Button type="button" onClick={() => dispatch(logout())}>
+						Logout
+					</CC.Button>
+				</div>
+			) : (
+				<div className="profileWrapper">
+					<CC.Button type="button" onClick={() => navigate('/login')}>
+						Login
+					</CC.Button>
+				</div>
+			)}
 		</div>
 	);
 };
