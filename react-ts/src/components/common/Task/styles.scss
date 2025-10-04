@@ -1,0 +1,68 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixin.scss';
+
+.task {
+	@include flex-container(row, 1);
+	padding: 1em;
+	border: 3px solid $borders-color;
+	border-radius: 30px;
+	align-items: center;
+	justify-content: space-between;
+	transition: transform 0.3s ease;
+	height: 12em;
+
+	&:hover {
+		transform: scale(1.03);
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		z-index: -1;
+
+		&:checked + .custom-checkbox {
+			background-color: $main-color;
+		}
+
+		&:checked ~ .text {
+			text-decoration: line-through;
+		}
+	}
+
+	.custom-checkbox {
+		cursor: pointer;
+		min-width: 16px;
+		height: 16px;
+		border: 2px solid $borders-color;
+		border-radius: 50%;
+	}
+
+	.text {
+		width: 100%;
+		height: 100%;
+	}
+	.btnsWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		height: 100%;
+		justify-content: space-between;
+
+		.taskBtn {
+			width: 32px;
+			height: 32px;
+			background-color: #cc1414;
+			border: none;
+			border-radius: 6px;
+			transition: transform 0.2s ease;
+
+			&:hover {
+				transform: scale(1.1);
+			}
+
+			&.editBtn {
+				background-color: #29cc39;
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.TaskPage {
+	@include flex-container(column, 3);
+	height: 100%;
+
+	.createBtn {
+		@include flex-container(row, 1);
+		justify-content: space-between;
+
+		border: 2px solid $borders-color;
+		border-radius: 30px;
+		padding: 2em 6em;
+
+		font-size: 1em;
+
+		align-items: center;
+		transition: transform 0.4s ease;
+
+		&:hover {
+			transform: scale(1.01);
+		}
+
+		.plusWrapper {
+			width: 40px;
+			height: 40px;
+			border: 2px solid $borders-color;
+			border-radius: 50%;
+			display: flex;
+			background-color: $main-color;
+		}
+	}
+
+	.tasksWrapper {
+		display: grid;
+		gap: 1em;
+		grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+	}
+}

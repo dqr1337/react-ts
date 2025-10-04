@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.HomePage {
+	@include flex-container(column, 3);
+	height: 100%;
+	align-items: start;
+	justify-content: space-evenly;
+
+	padding: 4em;
+	border: 2px solid $borders-color;
+	border-radius: 20px;
+
+	.main-title {
+		font-weight: bold;
+		font-size: 5em;
+	}
+
+	.btn {
+		width: 20%;
+	}
+}

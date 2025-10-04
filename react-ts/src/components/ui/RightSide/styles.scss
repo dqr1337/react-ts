@@ -2,7 +2,6 @@
 @import '../../../styles/mixin.scss';
 
 .rightSide {
-	@include flex-container(column, 3);
-	width: 100%;
-	padding: 3em;
+	width: 75%;
+	padding: 7em;
 }
