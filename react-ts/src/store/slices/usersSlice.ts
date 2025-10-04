@@ -1,6 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+type UserType = { username: string; password: string };
+
+type UsersState = {
+	users: UserType[];
+};
+
+const initialState: UsersState = {
 	users: [{ username: 'www', password: 'sss' }],
 };
 
@@ -8,7 +14,7 @@ const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
-		addUser(state, action) {
+		addUser(state, action: PayloadAction<UserType>) {
 			state.users.push(action.payload);
 		},
 	},

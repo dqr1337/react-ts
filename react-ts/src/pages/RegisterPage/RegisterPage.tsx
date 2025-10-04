@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import type { AppDispatch, RootState } from '../../store/store';
 import './styles.scss';
 
 import eye from '../../assets/icons/eye.svg';
@@ -11,17 +12,17 @@ import { addUser } from '../../store/slices/usersSlice';
 import { login } from '../../store/slices/authSlice';
 
 export const RegisterPage = () => {
-	const [isVisibile, setIsVisibile] = useState(false);
-	const [isAccountExist, setIsAccountExist] = useState(false);
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [isVisibile, setIsVisibile] = useState<boolean>(false);
+	const [isAccountExist, setIsAccountExist] = useState<boolean>(false);
+	const [username, setUsername] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
 
-	const users = useSelector((state: any) => state.users.users);
+	const users = useSelector((state: RootState) => state.users.users);
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 
-	function SubmitForm(e: React.FormEvent) {
+	function SubmitForm(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		const currentUser = { username: username, password: password };
