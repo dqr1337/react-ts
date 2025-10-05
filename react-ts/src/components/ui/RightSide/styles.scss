@@ -1,7 +1,9 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixin.scss';
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/mixin.scss' as *;
 
 .rightSide {
+	@include flex-container(column, 3);
+
 	width: 75%;
 	padding: 7em;
 }
