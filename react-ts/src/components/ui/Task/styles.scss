@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixin.scss';
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/mixin.scss' as *;
 
 .task {
 	@include flex-container(row, 1);
@@ -8,11 +8,11 @@
 	border-radius: 30px;
 	align-items: center;
 	justify-content: space-between;
-	transition: transform 0.3s ease;
+	transition: transform 0.4s ease;
 	height: 12em;
 
 	&:hover {
-		transform: scale(1.03);
+		transform: scale(1.05);
 	}
 
 	input {
@@ -24,7 +24,7 @@
 			background-color: $main-color;
 		}
 
-		&:checked ~ .text {
+		&:checked ~ .taskText {
 			text-decoration: line-through;
 		}
 	}
@@ -37,10 +37,16 @@
 		border-radius: 50%;
 	}
 
-	.text {
+	.taskText {
 		width: 100%;
 		height: 100%;
+		overflow-y: auto;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
+
 	.btnsWrapper {
 		display: flex;
 		flex-direction: column;
@@ -51,17 +57,16 @@
 		.taskBtn {
 			width: 32px;
 			height: 32px;
-			background-color: #cc1414;
+			background-color: rgba(88, 88, 88, 0.1);
 			border: none;
 			border-radius: 6px;
 			transition: transform 0.2s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
 			&:hover {
 				transform: scale(1.1);
-			}
-
-			&.editBtn {
-				background-color: #29cc39;
 			}
 		}
 	}

@@ -8,6 +8,7 @@ const TaskPage = lazy(() => import('../pages/TaskPage/TaskPage'));
 import { LoginPage } from '../pages/LoginPage/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage';
+import { TaskModal } from '../components/ui/TaskModal/TaskModal';
 
 import { RequireAuth } from './RequireAuth';
 
@@ -29,11 +30,20 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: 'tasks',
+
 						element: (
 							<Suspense fallback="Loading...">
 								<TaskPage />
 							</Suspense>
 						),
+					},
+					{
+						path: 'tasks/:id/edit',
+						element: <TaskModal />,
+					},
+					{
+						path: 'tasks/create',
+						element: <TaskModal />,
 					},
 				],
 			},
