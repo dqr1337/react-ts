@@ -1,9 +1,27 @@
-type UserType = { username: string; password: string };
+type AuthData = {
+	username: string;
+	password: string;
+};
 
-export const authVerify = (users: UserType[], currentUser: UserType): boolean => {
-	const findedUser = users.find((user: UserType) => user.username === currentUser.username);
+type Task = {
+	id: number;
+	text: string;
+	isCompleted: boolean;
+};
 
-	if (findedUser && findedUser.password === currentUser.password) {
+type UserData = {
+	AuthData: AuthData;
+	TasksList: Task[];
+};
+
+type UsersArray = {
+	[username: string]: UserData;
+};
+
+export const authVerify = (users: UsersArray, currentUser: AuthData): boolean => {
+	const user = users[currentUser.username];
+
+	if (user && user.AuthData.password === currentUser.password) {
 		return true;
 	}
 
