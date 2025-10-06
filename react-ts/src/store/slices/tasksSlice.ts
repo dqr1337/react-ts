@@ -11,11 +11,7 @@ type TasksState = {
 };
 
 const initialState: TasksState = {
-	tasks: [
-		{ id: 1, text: '1 task', isCompleted: false },
-		{ id: 2, text: '2 task', isCompleted: true },
-		{ id: 3, text: '3 task', isCompleted: false },
-	],
+	tasks: [],
 };
 
 const tasksSlice = createSlice({
@@ -23,7 +19,7 @@ const tasksSlice = createSlice({
 	initialState,
 	reducers: {
 		addTask(state, action: PayloadAction<string>) {
-			const maxId = Math.max(...state.tasks.map((task) => task.id));
+			const maxId = state.tasks.length > 0 ? Math.max(...state.tasks.map((task) => task.id)) : 0;
 
 			state.tasks.push({ id: maxId + 1, text: action.payload, isCompleted: false });
 		},
@@ -42,7 +38,6 @@ const tasksSlice = createSlice({
 		},
 		changeTask(state: TasksState, action: PayloadAction<TaskType>) {
 			const taskById = state.tasks.find((task) => task.id === action.payload.id);
-			console.log(action.payload.id);
 
 			if (taskById) {
 				taskById.text = action.payload.text;
@@ -56,8 +51,11 @@ const tasksSlice = createSlice({
 				taskById.isCompleted = !taskById.isCompleted;
 			}
 		},
+		setTasksForUser(state: TasksState, action: PayloadAction<TaskType[]>) {
+			state.tasks = action.payload;
+		},
 	},
 });
 
-export const { addTask, deleteTask, changeTask, changeCompletion } = tasksSlice.actions;
+export const { addTask, deleteTask, changeTask, changeCompletion, setTasksForUser } = tasksSlice.actions;
 export default tasksSlice.reducer;

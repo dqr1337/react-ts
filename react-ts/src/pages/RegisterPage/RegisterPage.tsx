@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../../store/store';
@@ -8,8 +8,10 @@ import eye from '../../assets/icons/eye.svg';
 import eyeClosed from '../../assets/icons/eyeClosed.svg';
 import * as CC from '../../components/common/index';
 import { authVerify } from '../../features/authVerify';
-import { addUser } from '../../store/slices/usersSlice';
+import { addUser, setUsersData } from '../../store/slices/usersSlice';
 import { login } from '../../store/slices/authSlice';
+import { getUsersData, saveUsersTasks } from '../../features/LS';
+import { setTasksForUser } from '../../store/slices/tasksSlice';
 
 export const RegisterPage = () => {
 	const [isVisibile, setIsVisibile] = useState<boolean>(false);
@@ -22,6 +24,16 @@ export const RegisterPage = () => {
 	const navigate = useNavigate();
 	const dispatch: AppDispatch = useDispatch();
 
+	useEffect(() => {
+		const users = getUsersData();
+		dispatch(setUsersData(users));
+		dispatch(setTasksForUser([]));
+	}, []);
+
+	useEffect(() => {
+		saveUsersTasks(users);
+	}, [users]);
+
 	function SubmitForm(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
@@ -33,6 +45,7 @@ export const RegisterPage = () => {
 		}
 
 		dispatch(addUser(currentUser));
+
 		dispatch(login(currentUser));
 		navigate('/', { replace: true });
 	}

@@ -23,6 +23,7 @@ export const TaskModal = () => {
 	const onSave = () => {
 		if (numId && currentTask) {
 			dispatch(changeTask({ id: numId, text: textValue, isCompleted: false }));
+
 			navigate('/tasks', { replace: true });
 			return;
 		}
